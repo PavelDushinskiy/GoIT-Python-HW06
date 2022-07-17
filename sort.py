@@ -37,13 +37,12 @@ extensions = {
 
 }
 
-# if len(sys.argv) != 2:
-#     print("\n\033[31mNeed a name of the folder for sorting\033[0m\n")
-#     quit()
+if len(sys.argv) != 2:
+    print("\n\033[31mNeed a name of the folder for sorting\033[0m\n")
+    quit()
 
-# else:
-#root_folder = sys.argv[1]
-root_folder = r'd:\PYTHON\02'
+else:
+    root_folder = sys.argv[1]
 
 
 def tree_items(path):
@@ -94,7 +93,7 @@ def remove_empty_folders(folder_path):
 def unpack_file(folder_path):
     for archive in os.listdir(folder_path):
         archive_name = archive.split('.')[0]
-        if not os.path.exists(archive_name):
+        if not os.path.exists(f'{folder_path}\\{archive_name}'):
             os.mkdir(f'{folder_path}\\{archive_name}')
         shutil.unpack_archive(
             f'{folder_path}\\{archive}', f'{folder_path}\\{archive_name}')
