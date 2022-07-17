@@ -1,3 +1,14 @@
+"""Procedure for sorting files in directory
+
+    All files and folders are renamed using the normalize function;
+    File extensions do not change after renaming;
+    Empty folders are deleted;
+    The unpacked contents of the archive are transferred to the archives folder 
+    in a subfolder named the same as the archive;
+    Files whose extensions are unknown remain unchanged.
+
+"""
+
 import sys
 import os
 import argparse
@@ -69,14 +80,14 @@ def sort_files(folder_path):
 
         for dict_key_int in range(len(ext_list)):
             if extension in ext_list[dict_key_int][1]:
-                print(
-                    f'Moving {file_name} in "{ext_list[dict_key_int][0]}" folder\n')
+                if os.path.exists(f'{root_folder}\\{ext_list[dict_key_int][0]}\\{file_name}'):
+                    file_name += '.copy'
                 os.rename(
                     file_path, f'{root_folder}\\{ext_list[dict_key_int][0]}\\{file_name}')
                 break
             if dict_key_int == len(ext_list) - 1:
-                print(
-                    f'Moving {file_name} in "{ext_list[dict_key_int][0]}" folder\n')
+                if os.path.exists(f'{root_folder}\\{ext_list[dict_key_int][0]}\\{file_name}'):
+                    file_name += '.copy'
                 os.rename(
                     file_path, f'{root_folder}\\{ext_list[dict_key_int][0]}\\{file_name}')
 
